@@ -1,0 +1,1 @@
+Ejemplo de prueba de programacipon funcional con JS.
