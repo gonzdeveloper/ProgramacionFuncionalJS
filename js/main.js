@@ -29,8 +29,25 @@ const attrsToString = (obj = {}) => {
 }
 // "tag: h1 class="title"
 
+
+
+//recibe un objeto y devuelve un string
+const tagAttrs = obj => (content = "") =>
+  `<${obj.tag}${obj.attrs ? ' ' : ''}${attrsToString(obj.attrs)}>${content}</${obj.tag}>`
+
+
+
+
 //Funcion para crear las etiquetas
-const tag = t => content => `<${t}>${content}<${t}>`
+const tag = t => {
+  if (typeof t === 'string'){
+    tagAttrs({tag: t})
+  }else{
+    tagAttrs(t)
+  }
+}
+
+//content => `<${t}>${content}<${t}>`
 
 
 let description = $('#description')
