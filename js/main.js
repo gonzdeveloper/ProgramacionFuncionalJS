@@ -7,7 +7,14 @@ let carbs = $('#carbs')
 let calories = $('#calories')
 let protein = $('#protein')
 
-
+let list = [
+  // {
+  //   description: 'Manzana',
+  //   calories: 10,
+  //   carbs: 10,
+  //   protein: 10
+  // }
+]
 
 //------------Validar datos ingresado no sean vacios
 const validateInputs = () => {
@@ -26,7 +33,7 @@ const validateInputs = () => {
 
   //Si no estan vacios los agrego a la lista
   if (description.val() && carbs.val() && calories.val() && protein.val()){
-    console.log("OK")
+    add()
   }
 
 }
@@ -46,3 +53,35 @@ calories.keypress(()=>{
 protein.keypress(()=>{
   protein.removeClass('is-invalid')
 }) 
+
+
+
+//ArrowFunctions
+/*
+
+  Definir funciones como constantes y no como functions se conoce
+  en JavaScript como arrow function, aunque en términos más generales
+  también las podemos encontrar como funciones lambda y es una característica
+  introducida por EcmaScript
+
+*/
+
+const add = () => {
+  const newItem = {
+    description: description.val(),
+    carbs: parseInt(carbs.val()),
+    calories: parseInt(calories.val()),
+    protein: parseInt(protein.val())
+  }
+
+  list.push(newItem)
+  cleanInputs()
+  console.log(list)
+}
+
+const cleanInputs = () => {
+  description.val('')
+  carbs.val('')
+  calories.val('')
+  protein.val('')
+}
