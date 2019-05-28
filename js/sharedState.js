@@ -45,6 +45,13 @@ const timesTwo = b => Object.assign({}, b, {value: b.value * 2})
 addOne(b)
 timesTwo(b)
 
-console.log(addOne(timesTwo(b))) // 5
-
 console.log(b.value) // 2
+
+
+//--------- Function Composition
+/*
+    Conocemos como Function Composition a las funciones que obtenemos como
+    resultado de combinar otras dos o más funciones, el resultado de cada
+    función es el argumento de la siguiente y así sucesivamente.
+*/
+console.log(addOne(timesTwo(b))) // 5
