@@ -2,6 +2,37 @@ const compose = (...functions) => data =>
   functions.reduceRight((value, func) => func(value), data)
 
 
+//Funcion para agregar los atributos
+/*
+  inicializa el objeto en vacio
+*/
+// {
+//   tag: 'h1',
+//   attr: {
+//     class: 'title'
+//   }
+// }
+const attrsToString = (obj = {}) => {
+  const keys = Object.keys(obj)
+  const attrs = []
+
+  for (let i=0; i<keys.length; i++){
+    let attr = keys[i]
+    attrs.push(`${attr}="${obj[attr]}"`)
+  }
+
+  //genera un string con todos los elementos que estan en una lista
+  const string = attrs.join('')
+
+  return string
+
+}
+// "tag: h1 class="title"
+
+//Funcion para crear las etiquetas
+const tag = t => content => `<${t}>${content}<${t}>`
+
+
 let description = $('#description')
 let carbs = $('#carbs')
 let calories = $('#calories')
