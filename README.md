@@ -27,3 +27,5 @@ Un objeto es una referencia a un espacio en memoria, cada vez que creamos un obj
 
 Existen dos tipos de memoria: Stack y Heap.
 La memoria Stack es mucho más rápida y nos permite almacenar los datos de forma ““ordenada”” y en JavaScript la utilizamos para guardar datos primitivos, como booleanos, números o strings. En cambio, los objetos utilizan la memoria Heap, una memoria que nos permite guardar grandes cantidades de información pero con un poco menos de velocidad.
+
+---Ahora desde la MAC
