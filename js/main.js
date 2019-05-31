@@ -53,6 +53,13 @@ const tableRow = items => compose(tableRowTag, tableCells)(items)
 const tableCell = tag('td')
 const tableCells = items => items.map(tableCell).join('')
 
+const trashIcon = tag({tag: 'i', attrs: {class: 'fas fa-trash'}})('')
+
+/*
+<button class="btn btn-outline-danger" onclick="removeItem(index)">
+<i class="fas fa-trash-alt"></i>
+</button>
+*/
 
 
 let description = $('#description')
@@ -163,7 +170,23 @@ const renderItems = () => {
   //no usamos ningún selector de id
   $('tbody').empty()
 
-  list.map(item => {
-    $('tbody').append(tableRow([item.description, item.calories, item.carbs, item.protein]))
+  list.map((item, index) => {
+
+    const removeButton = tag({
+      tag: 'button',
+      attrs: {
+        class: 'btn btn-outline-danger',
+        onclick: `removeItems(${index})`
+      }
+    })(trashIcon)
+
+    $('tbody').append(tableRow([item.description, item.calories, item.carbs, item.protein, removeButton]))
   })
+}
+
+const removeItems = (index) => {
+  list.splice(index, 1)
+  
+  updateTotals()
+  renderItems()
 }
