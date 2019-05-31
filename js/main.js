@@ -12,6 +12,9 @@ const compose = (...functions) => data =>
 //     class: 'title'
 //   }
 // }
+
+// programada de forma imperativa 
+/*
 const attrsToString = (obj = {}) => {
   const keys = Object.keys(obj)
   const attrs = []
@@ -25,9 +28,14 @@ const attrsToString = (obj = {}) => {
   const string = attrs.join('')
 
   return string
-
 }
-// "tag: h1 class="title"
+*/
+
+// programada de forma declarativa
+const attrsToString = (obj = {}) =>
+  Object.keys(obj)
+    .map(attr => `${attr}="${obj[attr]}"`)
+    .join('')
 
 
 
@@ -36,12 +44,21 @@ const tagAttrs = obj => (content = '') =>
   `<${obj.tag}${obj.attrs ? ' ' : ''}${attrsToString(obj.attrs)}>${content}</${obj.tag}>`
 
 //Funcion para crear las etiquetas
+// programada de forma imperativa 
+/*
 const tag = t => {
   if(typeof t === 'string') {
     return tagAttrs({ tag: t })
   }
   return tagAttrs(t)
 }
+*/
+
+// programada de forma declarativa
+const tag = t =>
+  typeof t === 'string' ? tagAttrs({ tag: t }) : tagAttrs(t)
+
+
 
 
 const tableRowTag = tag('tr')
