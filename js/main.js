@@ -35,9 +35,6 @@ const attrsToString = (obj = {}) => {
 const tagAttrs = obj => (content = "") =>
   `<${obj.tag}${obj.attrs ? ' ' : ''}${attrsToString(obj.attrs)}>${content}</${obj.tag}>`
 
-
-
-
 //Funcion para crear las etiquetas
 const tag = t => {
   if (typeof t === 'string'){
@@ -72,6 +69,7 @@ let list = [
   //   protein: 10
   // }
 ]
+
 
 //------------Validar datos ingresado no sean vacios
 const validateInputs = () => {
@@ -133,8 +131,25 @@ const add = () => {
 
   list.push(newItem)
   cleanInputs()
+  updateTotals()
   console.log(list)
 }
+
+
+const updateTotals = () =>{
+  let calories = 0, carbs = 0, protein = 0
+
+  list.map(item => {
+    calories = item.calories,
+    carbs = item.carbs,
+    protein =  item.protein
+  })
+
+  $('#totalCalories').text(calories)
+  $('#totalCarbs').text(carbs)
+  $('#totalProtein').text(protein)
+}
+
 
 const cleanInputs = () => {
   description.val('')
