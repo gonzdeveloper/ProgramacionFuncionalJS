@@ -32,16 +32,15 @@ const attrsToString = (obj = {}) => {
 
 
 //recibe un objeto y devuelve un string
-const tagAttrs = obj => (content = "") =>
+const tagAttrs = obj => (content = '') =>
   `<${obj.tag}${obj.attrs ? ' ' : ''}${attrsToString(obj.attrs)}>${content}</${obj.tag}>`
 
 //Funcion para crear las etiquetas
 const tag = t => {
-  if (typeof t === 'string'){
-    tagAttrs({tag: t})
-  }else{
-    tagAttrs(t)
+  if(typeof t === 'string') {
+    return tagAttrs({ tag: t })
   }
+  return tagAttrs(t)
 }
 
 
@@ -52,7 +51,7 @@ const tableRowTag = tag('tr')
 const tableRow = items => compose(tableRowTag, tableCells)(items)
 
 const tableCell = tag('td')
-const tableCells = items => item.map(tableCell).join('')
+const tableCells = items => items.map(tableCell).join('')
 
 
 
@@ -132,7 +131,8 @@ const add = () => {
   list.push(newItem)
   cleanInputs()
   updateTotals()
-  console.log(list)
+  //console.log(list)
+  renderItems()
 }
 
 
@@ -140,9 +140,9 @@ const updateTotals = () =>{
   let calories = 0, carbs = 0, protein = 0
 
   list.map(item => {
-    calories = item.calories,
-    carbs = item.carbs,
-    protein =  item.protein
+    calories += item.calories,
+    carbs += item.carbs,
+    protein +=  item.protein
   })
 
   $('#totalCalories').text(calories)
@@ -156,4 +156,14 @@ const cleanInputs = () => {
   carbs.val('')
   calories.val('')
   protein.val('')
+}
+
+
+const renderItems = () => {
+  //no usamos ningún selector de id
+  $('tbody').empty()
+
+  list.map(item => {
+    $('tbody').append(tableRow([item.description, item.calories, item.carbs, item.protein]))
+  })
 }
