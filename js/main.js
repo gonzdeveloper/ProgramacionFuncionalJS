@@ -47,7 +47,16 @@ const tag = t => {
   }
 }
 
-//content => `<${t}>${content}<${t}>`
+
+const tableRowTag = tag('tr')
+
+//Las 2 siguientes funciones hace lo mismo la segunda usa currying and compose
+//  ---> const tableRows = items => tableRowTag(tableCells(items))
+const tableRow = items => compose(tableRowTag, tableCells)(items)
+
+const tableCell = tag('td')
+const tableCells = items => item.map(tableCell).join('')
+
 
 
 let description = $('#description')
